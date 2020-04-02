@@ -31,4 +31,9 @@ resource "packet_device" "lab" {
   provisioner "remote-exec" {
     script = "setup-user.sh"
   }
+
+  provisioner "file" {
+    source      = "lab/"
+    destination = "/home/lab/"
+  }
 }
