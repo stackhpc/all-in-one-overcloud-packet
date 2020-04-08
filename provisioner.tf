@@ -1,8 +1,15 @@
 /* THE FOLLOWING IS REQUIRED IN ORDER TO AVOID CIRCULAR
    DEPENDENCY AND ENABLE CONCURRENT MACHINE PROVISIONING */
 
-resource "null_resource" "all_in_one_remote_exec" {
+resource "null_resource" "all_in_one_provisioner" {
+
   count = var.lab_count
+
+  triggers = {
+    local = packet_device.all_in_one[count.index].id
+    remote = packet_device.monasca[count.index].id
+  }
+
   connection {
     user        = "root"
     private_key = tls_private_key.default.private_key_pem
@@ -35,8 +42,15 @@ resource "null_resource" "all_in_one_remote_exec" {
   }
 }
 
-resource "null_resource" "monasca_remote_exec" {
+resource "null_resource" "monasca_provisioner" {
+
   count = var.lab_count
+
+  triggers = {
+    local = packet_device.monasca[count.index].id
+    remote = packet_device.all_in_one[count.index].id
+  }
+
   connection {
     user        = "root"
     private_key = tls_private_key.default.private_key_pem
