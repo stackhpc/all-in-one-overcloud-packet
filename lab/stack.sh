@@ -2,8 +2,10 @@
 
 set -x
 
-# Install git
+# Install git and disable selinux
 sudo dnf install -y git selinux-policy-targeted
+sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
+sudo setenforce 0
 
 # From https://docs.openstack.org/kayobe/latest/development/automated.html#overcloud
 git clone https://opendev.org/openstack/kayobe.git -b stable/train
