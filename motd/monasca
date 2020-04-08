@@ -5,5 +5,5 @@ You may want to change your password immediately.
 
 To bootstrap Kayobe with standalone Monasca, run:
 
-    ./stack-with-standalone-monasca.sh
+    ./standalone-monasca.sh
 -

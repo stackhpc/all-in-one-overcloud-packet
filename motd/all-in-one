@@ -5,7 +5,7 @@ You may want to change your password immediately.
 
 To bootstrap Kayobe all-in-one overcloud with Magnum, run:
 
-    ./stack-with-magnum.sh
+    ./all-in-one-with-magnum.sh
 
 Once this is complete, use the OpenStack environment as follows:
 
