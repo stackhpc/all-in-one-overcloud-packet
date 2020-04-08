@@ -1,0 +1,11 @@
+Welcome to the Kayobe Lab!
+
+You may want to change your password immediately.
+
+To bootstrap Kayobe with standalone Monasca, run:
+
+    ./stack-with-standalone-monasca.sh
+
+Once this is complete, use the OpenStack environment as follows:
+
+    source ~/adminrc.sh

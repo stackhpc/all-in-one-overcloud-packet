@@ -1,0 +1,12 @@
+Welcome to the Kayobe Lab!
+
+You may want to change your password immediately.
+
+To bootstrap Kayobe all-in-one overcloud with Magnum, run:
+
+    ./stack-with-magnum.sh
+
+Once this is complete, use the OpenStack environment as follows:
+
+    source ~/adminrc.sh
+    openstack coe cluster list
