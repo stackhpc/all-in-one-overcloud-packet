@@ -18,13 +18,13 @@ resource "null_resource" "all_in_one_provisioner" {
     host        = packet_device.all_in_one[count.index].access_public_ipv4
   }
 
-  provisioner "remote-exec" {
-    script = "setup-user.sh"
-  }
-
   provisioner "file" {
     source      = "motd/all-in-one"
     destination = "/etc/motd"
+  }
+
+  provisioner "remote-exec" {
+    script = "setup-user.sh"
   }
 
   provisioner "file" {
@@ -34,6 +34,7 @@ resource "null_resource" "all_in_one_provisioner" {
 
   provisioner "remote-exec" {
     inline = [
+      "usermod -p `echo ${packet_device.all_in_one[count.index].id} | openssl passwd -1 -stdin` lab",
       "echo export LOCAL_IP=${packet_device.all_in_one[count.index].access_public_ipv4} > /home/lab/labip.sh",
       "echo export REMOTE_IP=${packet_device.monasca[count.index].access_public_ipv4} >> /home/lab/labip.sh",
       "chmod +x /home/lab/*.sh",
@@ -59,13 +60,13 @@ resource "null_resource" "monasca_provisioner" {
     host        = packet_device.monasca[count.index].access_public_ipv4
   }
 
-  provisioner "remote-exec" {
-    script = "setup-user.sh"
-  }
-
   provisioner "file" {
     source      = "motd/monasca"
     destination = "/etc/motd"
+  }
+
+  provisioner "remote-exec" {
+    script = "setup-user.sh"
   }
 
   provisioner "file" {
@@ -75,6 +76,7 @@ resource "null_resource" "monasca_provisioner" {
 
   provisioner "remote-exec" {
     inline = [
+      "usermod -p `echo ${packet_device.all_in_one[count.index].id} | openssl passwd -1 -stdin` lab",
       "echo export LOCAL_IP=${packet_device.monasca[count.index].access_public_ipv4} > /home/lab/labip.sh",
       "echo export REMOTE_IP=${packet_device.all_in_one[count.index].access_public_ipv4} >> /home/lab/labip.sh",
       "chmod +x /home/lab/*.sh",
