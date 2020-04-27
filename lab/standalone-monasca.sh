@@ -6,6 +6,5 @@ set -ex
 ./configure-network.sh 192.168.33.30
 
 # Deploy overcloud
-export CONFIG_REPO=https://github.com/stackhpc/kayobe-config-dev
 export CONFIG_BRANCH=stable/train-standalone-monasca
 ./stack.sh

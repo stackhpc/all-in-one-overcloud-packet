@@ -11,7 +11,7 @@ sudo setenforce 0
 git clone https://opendev.org/openstack/kayobe.git -b stable/train
 cd kayobe
 mkdir -p config/src
-CONFIG_REPO=${CONFIG_REPO:- https://opendev.org/openstack/kayobe-config-dev.git}
+CONFIG_REPO=${CONFIG_REPO:-https://github.com/stackhpc/kayobe-config-dev}
 CONFIG_BRANCH=${CONFIG_BRANCH:-stable/train}
 git clone $CONFIG_REPO -b $CONFIG_BRANCH config/src/kayobe-config
 
