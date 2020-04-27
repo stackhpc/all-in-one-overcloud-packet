@@ -15,5 +15,5 @@ ln -fs tfvars/kayobe-all-in-one-overcloud.tfvars terraform.tfvars
 ./install-deps.sh
 ./upload-coreos.sh
 terraform init
-./cluster.sh tfvars/coreos.tfvars
+./cluster.sh coreos.tfvars
 openstack coe cluster list
