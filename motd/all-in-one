@@ -14,5 +14,9 @@ To bootstrap Kayobe all-in-one overcloud with Magnum, run:
 Once this is complete, use the OpenStack environment as follows:
 
     source ~/adminrc.sh
-    openstack coe cluster list # If Magnum was deployed
+    openstack service list
+
+If Magnum was deployed:
+
+    openstack coe cluster list
 -
