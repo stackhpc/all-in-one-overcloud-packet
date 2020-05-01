@@ -1,5 +1,6 @@
-packet_auth_token   = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-packet_project_id   = "yyyyyy-yyyyy-yyyyyyyy-yyyyyyyyyy"
-deploy_prefix       = "kayobe"
-lab_count           = 2
-packet_facility     = "ewr1"
+packet_auth_token  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+packet_project_id  = "yyyyyy-yyyyy-yyyyyyyy-yyyyyyyyyy"
+deploy_prefix      = "kayobe"
+packet_facility    = "ewr1"
+lab_count          = 2
+standalone_monasca = false

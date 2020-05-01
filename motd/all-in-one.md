@@ -1,7 +1,6 @@
 
-Welcome to the Kayobe Lab!
-
-You may want to change your password immediately.
+Welcome to the Kayobe "all-in-one" Overcloud Lab!
+=================================================
 
 To bootstrap Kayobe all-in-one overcloud without Magnum, run:
 

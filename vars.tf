@@ -21,7 +21,12 @@ variable "plan" {
 
 variable "lab_count" {
   description = "Number of labs"
-  default     = "1"
+  default     = 0
+}
+
+variable "standalone_monasca" {
+  description = "Whether to enable standalone monasca or not"
+  default     = false
 }
 
 variable "operating_system" {
