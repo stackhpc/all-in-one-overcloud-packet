@@ -17,5 +17,6 @@ Once this is complete, use the OpenStack environment as follows:
 
 If Magnum was deployed:
 
+    source ~/labrc.sh
     openstack coe cluster list
 
