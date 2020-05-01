@@ -18,4 +18,4 @@ Once this is complete, use the OpenStack environment as follows:
 If Magnum was deployed:
 
     openstack coe cluster list
--
+
