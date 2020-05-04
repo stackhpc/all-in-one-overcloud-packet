@@ -14,7 +14,7 @@ sudo setenforce 0
 git clone https://opendev.org/openstack/kayobe.git -b stable/train
 cd kayobe
 mkdir -p config/src
-git clone ${CONFIG_REPO:-https://github.com/stackhpc/kayobe-config-dev} -b ${CONFIG_BRANCH:-stable/train} config/src/kayobe-config
+git clone ${CONFIG_REPO:-https://github.com/stackhpc/kayobe-config-aio} -b ${CONFIG_BRANCH:-stable/train} config/src/kayobe-config
 
 # Bootstrap and exit if there is error
 set -e
