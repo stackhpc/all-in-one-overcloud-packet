@@ -6,6 +6,8 @@ set -ex
 export PUBLIC_NETWORK_GW_IP=172.24.4.1
 ./stack.sh
 
+set +e
+
 # Deploy a test VM
 pushd kayobe; ./dev/overcloud-test-vm.sh; popd
 
