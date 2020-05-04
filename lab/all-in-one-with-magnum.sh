@@ -4,7 +4,7 @@ set -ex
 
 # Deploy overcloud
 export CONFIG_BRANCH=stable/train-magnum
-./stack.sh
+./all-in-one.sh
 
 # Deploy a Kubernetes cluster via Magnum
 ./magnum-terraform.sh
