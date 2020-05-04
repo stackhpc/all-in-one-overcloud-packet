@@ -12,7 +12,7 @@ sudo ip l add eth1 type dummy
 sudo ip l set eth1 up
 sudo ip l set eth1 master breth1
 
-# Configure vxlan0
+# Configure vxlan0 - not idempotent
 source labip.sh
 if [[ ! -z $LOCAL_IP ]] && [[ ! -z $REMOTE_IP ]]; then
     sudo ip link add vxlan0 type vxlan id 10000 local $LOCAL_IP dstport 4790
