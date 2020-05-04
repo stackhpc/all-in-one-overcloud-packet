@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configure iptable rules
-iface=$(route | grep '^default' | grep -o '[^ ]*$')
+iface=iface=$(ip route | awk '$1 == "default" {print $5; exit}')
 sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE
 sudo iptables -P FORWARD ACCEPT
 
