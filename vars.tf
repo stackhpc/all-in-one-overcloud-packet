@@ -38,3 +38,13 @@ variable "deploy_prefix" {
   description = "prefix to add to all hosts created under this deployment"
   default     = "kayobe"
 }
+
+variable "lab_repo_url" {
+  description = "URL of this Git repository to clone on remote machines"
+  default     = "https://github.com/stackhpc/all-in-one-overcloud-packet"
+}
+
+variable "lab_repo_branch" {
+  description = "Branch of this Git repository to clone on remote machines"
+  default     = "master"
+}

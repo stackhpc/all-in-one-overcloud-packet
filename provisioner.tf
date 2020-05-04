@@ -18,18 +18,8 @@ resource "null_resource" "all_in_one_provisioner" {
     host        = packet_device.all_in_one[count.index].access_public_ipv4
   }
 
-  provisioner "file" {
-    source      = "motd/all-in-one.md"
-    destination = "/etc/motd"
-  }
-
   provisioner "remote-exec" {
     script = "setup-user.sh"
-  }
-
-  provisioner "file" {
-    source      = "lab/"
-    destination = "/home/lab/"
   }
 
   provisioner "remote-exec" {
@@ -37,8 +27,13 @@ resource "null_resource" "all_in_one_provisioner" {
       "usermod -p `echo ${packet_device.all_in_one[count.index].id} | openssl passwd -1 -stdin` lab",
       "echo export LOCAL_IP=${packet_device.all_in_one[count.index].access_public_ipv4} > /home/lab/labip.sh",
       "echo export REMOTE_IP=${local.monasca_lab_count > 0 ? packet_device.monasca[count.index].access_public_ipv4 : ""} >> /home/lab/labip.sh",
-      "chmod +x /home/lab/*.sh",
-      "chown lab:lab /home/lab/*.sh",
+      "yum install -y git",
+      "rm -rf /home/lab/all-in-one-overcloud-packet",
+      "git clone ${var.lab_repo_url} -b ${var.lab_repo_branch} /home/lab/all-in-one-overcloud-packet",
+      "chown -R lab:lab /home/lab/all-in-one-overcloud-packet",
+      "chmod +x /home/lab/all-in-one-overcloud-packet/lab/*.sh",
+      "ln -sf /home/lab/all-in-one-overcloud-packet/lab/* /home/lab/",
+      "ln -sf /home/lab/all-in-one-overcloud-packet/motd/all-in-one.md /etc/motd",
     ]
   }
 }
@@ -60,18 +55,8 @@ resource "null_resource" "monasca_provisioner" {
     host        = packet_device.monasca[count.index].access_public_ipv4
   }
 
-  provisioner "file" {
-    source      = "motd/monasca.md"
-    destination = "/etc/motd"
-  }
-
   provisioner "remote-exec" {
     script = "setup-user.sh"
-  }
-
-  provisioner "file" {
-    source      = "lab/"
-    destination = "/home/lab/"
   }
 
   provisioner "remote-exec" {
@@ -79,8 +64,13 @@ resource "null_resource" "monasca_provisioner" {
       "usermod -p `echo ${packet_device.all_in_one[count.index].id} | openssl passwd -1 -stdin` lab",
       "echo export LOCAL_IP=${packet_device.monasca[count.index].access_public_ipv4} > /home/lab/labip.sh",
       "echo export REMOTE_IP=${packet_device.all_in_one[count.index].access_public_ipv4} >> /home/lab/labip.sh",
-      "chmod +x /home/lab/*.sh",
-      "chown lab:lab /home/lab/*.sh",
+      "yum install -y git",
+      "rm -rf /home/lab/all-in-one-overcloud-packet",
+      "git clone ${var.lab_repo_url} -b ${var.lab_repo_branch} /home/lab/all-in-one-overcloud-packet",
+      "chown -R lab:lab /home/lab/all-in-one-overcloud-packet",
+      "chmod +x /home/lab/all-in-one-overcloud-packet/lab/*.sh",
+      "ln -sf /home/lab/all-in-one-overcloud-packet/lab/* /home/lab/",
+      "ln -sf /home/lab/all-in-one-overcloud-packet/motd/monasca.md /etc/motd",
     ]
   }
 }
