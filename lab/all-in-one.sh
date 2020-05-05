@@ -8,7 +8,6 @@ set -ex
 pushd `dirname ${BASH_SOURCE[0]}`
 
 # Deploy overcloud
-export PUBLIC_NETWORK_GW_IP=172.24.4.1
 ./stack.sh
 
 set +e
