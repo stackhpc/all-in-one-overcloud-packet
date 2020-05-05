@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Reset SECONDS
+SECONDS=0
+
 set -ex
 
 pushd `dirname ${BASH_SOURCE[0]}`
@@ -32,3 +35,9 @@ source $LAB_DIR/labrc.sh
 openstack keypair create default --public-key ~/.ssh/id_rsa.pub
 
 popd
+
+set +ex
+
+# Calculate duration
+duration=$SECONDS
+echo "[INFO] $(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
