@@ -26,6 +26,7 @@ openstack role add --user $USERNAME --project $PROJECT_NAME member
 
 # Set default gateway on subnet so that traffic from vms can reach outside world
 source adminrc.sh
+source labip.sh
 openstack network create public --external --provider-network-type=flat --provider-physical-network physnet1 --share
 openstack subnet create public-subnet --ip-version=4 --gateway=$PUBLIC_NETWORK_GW_IP --network public --allocation-pool start=172.24.4.2,end=172.24.4.254 --subnet-range 172.24.4.0/24
 
