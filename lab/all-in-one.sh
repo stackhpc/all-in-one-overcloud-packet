@@ -36,8 +36,6 @@ openstack keypair create default --public-key ~/.ssh/id_rsa.pub
 
 popd
 
-set +ex
-
 # Calculate duration
 duration=$SECONDS
 echo "[INFO] $(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."

@@ -2,8 +2,7 @@
 
 set -x
 
-sudo dnf -y install network-scripts
-sudo systemctl is-enabled NetworkManager && (sudo systemctl disable NetworkManager ; sudo systemctl enable network ; sudo systemctl stop NetworkManager ; sudo systemctl start network)
+sudo systemctl is-enabled NetworkManager && (sudo dnf -y install network-scripts; sudo systemctl disable NetworkManager ; sudo systemctl enable network ; sudo systemctl stop NetworkManager ; sudo systemctl start network)
 sudo systemctl is-enabled firewalld && (sudo systemctl stop firewalld ; sudo systemctl disable firewalld)
 
 source labip.sh

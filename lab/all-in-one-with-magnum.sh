@@ -16,8 +16,6 @@ export CONFIG_BRANCH=stable/train-magnum
 
 popd
 
-set +ex
-
 # Calculate duration
 duration=$SECONDS
 echo "[INFO] $(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
