@@ -2,6 +2,10 @@
 
 set -x
 
+sudo dnf -y install network-scripts
+sudo systemctl is-enabled NetworkManager && (sudo systemctl disable NetworkManager ; sudo systemctl enable network ; sudo systemctl stop NetworkManager ; sudo systemctl start network)
+sudo systemctl is-enabled firewalld && (sudo systemctl stop firewalld ; sudo systemctl disable firewalld
+
 # Configure breth1
 [[ -z "$1" ]] && echo "Requires an IP address as an argument, e.g. 192.168.33.3" && exit 1
 sudo ip l add breth1 type bridge
