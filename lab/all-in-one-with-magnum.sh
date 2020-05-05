@@ -2,15 +2,13 @@
 
 set -ex
 
-# Apply network configuration (may need to reapply this after a reboot)
-./configure-network.sh 192.168.33.3
+pushd `dirname ${BASH_SOURCE[0]}`
 
 # Deploy overcloud
 export CONFIG_BRANCH=stable/train-magnum
-./stack.sh
-
-# Deploy a test VM
-pushd kayobe; ./dev/overcloud-test-vm.sh; popd
+./all-in-one.sh
 
 # Deploy a Kubernetes cluster via Magnum
 ./magnum-terraform.sh
+
+popd

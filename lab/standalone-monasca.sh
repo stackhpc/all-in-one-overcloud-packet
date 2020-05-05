@@ -2,9 +2,11 @@
 
 set -ex
 
-# Apply network configuration (may need to reapply this after a reboot)
-./configure-network.sh 192.168.33.30
+pushd `dirname ${BASH_SOURCE[0]}`
 
 # Deploy overcloud
+export CONTROLLER_IP=192.168.33.30
 export CONFIG_BRANCH=stable/train-standalone-monasca
 ./stack.sh
+
+popd
