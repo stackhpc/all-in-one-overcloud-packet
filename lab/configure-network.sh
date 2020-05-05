@@ -2,10 +2,16 @@
 
 set -x
 
+# Source IPs injected by terraform
+source labip.sh
+
 sudo systemctl is-enabled NetworkManager && (sudo dnf -y install network-scripts; sudo systemctl disable NetworkManager ; sudo systemctl enable network ; sudo systemctl stop NetworkManager ; sudo systemctl start network)
 sudo systemctl is-enabled firewalld && (sudo systemctl stop firewalld ; sudo systemctl disable firewalld)
 
-source labip.sh
+# Configure iptable rules
+iface=$(ip route | awk '$1 == "default" {print $5; exit}')
+sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE
+sudo iptables -P FORWARD ACCEPT
 
 # Configure breth1
 [[ -z "$CONTROLLER_IP" ]] && echo "CONTROLLER_IP must be present in the environment." && exit 1

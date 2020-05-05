@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Configure iptable rules
-iface=iface=$(ip route | awk '$1 == "default" {print $5; exit}')
-sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE
-sudo iptables -P FORWARD ACCEPT
-
 # Download and install dependencies
 git clone https://github.com/stackhpc/magnum-terraform magnum-terraform
 cd magnum-terraform
