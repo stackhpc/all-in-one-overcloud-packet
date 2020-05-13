@@ -8,6 +8,11 @@ source labip.sh
 sudo systemctl is-enabled NetworkManager && (sudo dnf -y install network-scripts; sudo systemctl disable NetworkManager ; sudo systemctl enable network ; sudo systemctl stop NetworkManager ; sudo systemctl start network)
 sudo systemctl is-enabled firewalld && (sudo systemctl stop firewalld ; sudo systemctl disable firewalld)
 
+# Install iptables.
+if $(which dnf >/dev/null 2>&1); then
+    sudo dnf -y install iptables
+fi
+
 # Configure iptable rules
 iface=$(ip route | awk '$1 == "default" {print $5; exit}')
 sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE
