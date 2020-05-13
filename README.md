@@ -3,7 +3,7 @@
 This Terraform deployment reproduces the instructions for [all-in-one
 overcloud](https://docs.openstack.org/kayobe/latest/development/automated.html#overcloud)
 workshop on Packet using Kayobe configuration in this
-[repository](https://github.com/stackhpc/kayobe-config-dev).
+[repository](https://github.com/stackhpc/kayobe-config-aio).
 
 ## Software Components
 
