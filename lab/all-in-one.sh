@@ -13,7 +13,7 @@ pushd `dirname ${BASH_SOURCE[0]}`
 set +e
 
 # Deploy a test VM
-pushd kayobe; ./dev/overcloud-test-vm.sh; popd
+pushd kayobe; ./dev/overcloud-test-vm.sh; source ./dev/environment-setup.sh; pip install python-openstackclient -c "${KAYOBE_SOURCE_PATH}/requirements.txt"; popd
 
 # Add non-admin user/project
 source labrc.sh

@@ -37,6 +37,7 @@ resource "null_resource" "all_in_one_provisioner" {
       "chmod +x /home/lab/all-in-one-overcloud-packet/lab/*.sh",
       "ln -sf /home/lab/all-in-one-overcloud-packet/lab/* /home/lab/",
       "ln -sf /home/lab/all-in-one-overcloud-packet/motd/all-in-one.md /etc/motd",
+      "su -c 'bash ./all-in-one.sh > all-in-one.out' - lab",
     ]
   }
 }
