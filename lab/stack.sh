@@ -3,7 +3,7 @@
 set -x
 
 # Apply network configuration (may need to reapply this after a reboot)
-./configure-network.sh ${CONTROLLER_IP:-192.168.33.3} ${PUBLIC_NETWORK_GW_IP}
+./configure-network.sh ${CONTROLLER_IP:-192.168.33.3} ${EXTERNAL_NETWORK_GW_IP}
 
 # Disable selinux
 sudo dnf install -y selinux-policy-targeted

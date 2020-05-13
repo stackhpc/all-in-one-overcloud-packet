@@ -23,10 +23,20 @@ sudo iptables -P FORWARD ACCEPT
 sudo ip l add breth1 type bridge
 sudo ip l set breth1 up
 sudo ip a add $CONTROLLER_IP/24 dev breth1
-[[ -z "$PUBLIC_NETWORK_GW_IP" ]] || sudo ip a add $PUBLIC_NETWORK_GW_IP/24 dev breth1
+[[ -z "$EXTERNAL_NETWORK_GW_IP" ]] || sudo ip a add $EXTERNAL_NETWORK_GW_IP/24 dev breth1
 sudo ip l add eth1 type dummy
 sudo ip l set eth1 up
 sudo ip l set eth1 master breth1
+
+# Configure breth2
+if [[ ! -z "$PUBLIC_NET_IP" ]]; then
+  sudo ip l add breth2 type bridge
+  sudo ip l set breth2 up
+  sudo ip a add $PUBLIC_NET_IP/24 dev breth2
+  sudo ip l add eth2 type dummy
+  sudo ip l set eth2 up
+  sudo ip l set eth2 master breth2
+fi
 
 # Configure vxlan0 - not idempotent
 if [[ ! -z $LOCAL_IP ]] && [[ ! -z $REMOTE_IP ]]; then
