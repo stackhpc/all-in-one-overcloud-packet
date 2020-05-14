@@ -1,6 +1,7 @@
 packet_auth_token  = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 packet_project_id  = "yyyyyy-yyyyy-yyyyyyyy-yyyyyyyyyy"
 deploy_prefix      = "kayobe"
-packet_facility    = "ewr1"
-lab_count          = 2
+lab_count          = 1
 standalone_monasca = false
+packet_facility    = "any"
+lab_repo_branch    = "master"
