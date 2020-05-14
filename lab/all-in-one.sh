@@ -31,6 +31,9 @@ source labip.sh
 openstack network create public --external --provider-network-type=flat --provider-physical-network physnet1 --share
 openstack subnet create public-subnet --ip-version=4 --gateway=$EXTERNAL_NETWORK_GW_IP --network public --allocation-pool start=172.24.4.2,end=172.24.4.254 --subnet-range 172.24.4.0/24
 
+# Configure demo-net to reach public network via demo-router
+openstack router set --external-gateway public demo-router
+
 # Keypair for lab user
 source labrc.sh
 openstack keypair create default --public-key ~/.ssh/id_rsa.pub
