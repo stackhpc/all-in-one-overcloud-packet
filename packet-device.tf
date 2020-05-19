@@ -8,7 +8,8 @@ resource "packet_ssh_key" "default" {
 }
 
 locals {
-  monasca_lab_count = var.lab_count * (tobool(var.standalone_monasca) ? 1 : 0)
+  monasca_lab_count = var.lab_count * (tobool(var.enable_monasca) ? 1 : 0)
+  script_suffix = tobool(var.enable_magnum) ? "-with-magnum" : ""
 }
 
 resource "packet_device" "all_in_one" {

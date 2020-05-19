@@ -36,6 +36,7 @@ resource "null_resource" "all_in_one_provisioner" {
       "chmod +x /home/lab/all-in-one-overcloud-packet/lab/*.sh",
       "ln -sf /home/lab/all-in-one-overcloud-packet/lab/* /home/lab/",
       "ln -sf /home/lab/all-in-one-overcloud-packet/motd/all-in-one.md /etc/motd",
+      "su -c \"tmux new -d bash -c '~/all-in-one${local.script_suffix}.sh | tee stack.out'\" - lab"
     ]
   }
 }
@@ -74,6 +75,7 @@ resource "null_resource" "monasca_provisioner" {
       "chmod +x /home/lab/all-in-one-overcloud-packet/lab/*.sh",
       "ln -sf /home/lab/all-in-one-overcloud-packet/lab/* /home/lab/",
       "ln -sf /home/lab/all-in-one-overcloud-packet/motd/monasca.md /etc/motd",
+      "su -c \"tmux new -d bash -c '~/standalone-monasca.sh | tee stack.out'\" - lab"
     ]
   }
 }

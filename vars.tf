@@ -24,8 +24,13 @@ variable "lab_count" {
   default     = 0
 }
 
-variable "standalone_monasca" {
+variable "enable_monasca" {
   description = "Whether to enable standalone monasca or not"
+  default     = false
+}
+
+variable "enable_magnum" {
+  description = "Whether to enable magnum or not"
   default     = false
 }
 

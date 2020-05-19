@@ -22,7 +22,7 @@ needs to be the user auth token, not the project auth token, otherwise you will
 hit strange errors. This can be obtained by clicking the user icon on the top
 right hand corner on https://app.packet.net and choose API Keys in the menu.
 
-Additionally, to enable standalone Monasca, set `standalone_monasca = true`
+Additionally, to enable standalone Monasca, set `enable_monasca = true`
 (false by default). This deploys a second VM for each lab machine which
 authenticates against Keystone service running in the all-in-one deployment.
 
