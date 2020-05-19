@@ -10,13 +10,13 @@ iface=$(ip route | awk '$1 == "default" {print $5; exit}')
 sudo dnf -y install iptables && (sudo iptables -A POSTROUTING -t nat -o $iface -j MASQUERADE; sudo iptables -P FORWARD ACCEPT)
 
 # Config for packet
-ns=/etc/sysconfig/network-scripts
-grep -q '^RTPROTO=' $ns/ifcfg-$iface || (echo "RTPROTO=static" | sudo tee -a $ns/ifcfg-$iface)
-grep -q '^METRIC=' $ns/ifcfg-$iface || (echo "METRIC=300" | sudo tee -a $ns/ifcfg-$iface)
-sudo sed -i 's/'$iface':0$/'$iface':0 proto static metric 300/g' $ns/route-$iface
-[[ -f $ns/ifcfg-ens3 ]] && sudo rm $ns/ifcfg-ens3
-sudo dnf -y install network-scripts && (sudo systemctl disable NetworkManager; sudo systemctl enable network; sudo systemctl stop NetworkManager; sudo systemctl start network)
-sudo systemctl is-enabled firewalld && (sudo systemctl stop firewalld ; sudo systemctl disable firewalld)
+#ns=/etc/sysconfig/network-scripts
+#grep -q '^RTPROTO=' $ns/ifcfg-$iface || (echo "RTPROTO=static" | sudo tee -a $ns/ifcfg-$iface)
+#grep -q '^METRIC=' $ns/ifcfg-$iface || (echo "METRIC=300" | sudo tee -a $ns/ifcfg-$iface)
+#sudo sed -i 's/'$iface':0$/'$iface':0 proto static metric 300/g' $ns/route-$iface
+#[[ -f $ns/ifcfg-ens3 ]] && sudo rm $ns/ifcfg-ens3
+#sudo dnf -y install network-scripts && (sudo systemctl disable NetworkManager; sudo systemctl enable network; sudo systemctl stop NetworkManager; sudo systemctl start network)
+#sudo systemctl is-enabled firewalld && (sudo systemctl stop firewalld ; sudo systemctl disable firewalld)
 
 # Configure breth1
 [[ -z "$CONTROLLER_IP" ]] && echo "CONTROLLER_IP must be present in the environment." && exit 1
