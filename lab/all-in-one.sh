@@ -25,7 +25,6 @@ openstack user create $USERNAME --password $OS_PASSWORD --or-show
 openstack role add --user $USERNAME --project $PROJECT_NAME member
 
 # Set default gateway on subnet so that traffic from vms can reach outside world
-./configure-network.sh
 source adminrc.sh
 source labip.sh
 openstack network create public --external --provider-network-type=flat --provider-physical-network physnet1 --share
