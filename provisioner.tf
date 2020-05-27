@@ -75,7 +75,7 @@ resource "null_resource" "monasca_provisioner" {
       "chmod +x /home/lab/all-in-one-overcloud-packet/lab/*.sh",
       "ln -sf /home/lab/all-in-one-overcloud-packet/lab/* /home/lab/",
       "ln -sf /home/lab/all-in-one-overcloud-packet/motd/monasca.md /etc/motd",
-      "su -c \"tmux new -d bash -c '~/standalone-monasca.sh | tee stack.out'\" - lab"
+      #"su -c \"tmux new -d bash -c '~/standalone-monasca.sh | tee stack.out'\" - lab"
     ]
   }
 }

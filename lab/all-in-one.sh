@@ -13,6 +13,7 @@ pushd `dirname ${BASH_SOURCE[0]}`
 set +e
 
 # Deploy a test VM
+./configure-network.sh
 pushd kayobe; ./dev/overcloud-test-vm.sh; popd
 
 # Add non-admin user/project

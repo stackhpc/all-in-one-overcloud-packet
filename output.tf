@@ -8,12 +8,19 @@ output "ips_all_in_one" {
   ))}"
 }
 
+output "tail_all_in_one" {
+  value = "${
+    join("", formatlist(
+      "\n    ssh root@%s \"tail -f /home/lab/stack.out\"",
+      packet_device.all_in_one.*.access_public_ipv4,
+  ))}"
+}
+
 output "ips_monasca" {
   value = "${local.monasca_lab_count > 0 ?
     join("", formatlist(
-      "\n    %s (password: %s) ssh lab@%s",
+      "\n    %s ssh lab@%s",
       packet_device.monasca.*.hostname,
-      packet_device.all_in_one.*.id,
       packet_device.monasca.*.access_public_ipv4,
   )) : ""}"
 }
