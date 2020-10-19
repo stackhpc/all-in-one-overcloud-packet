@@ -19,9 +19,6 @@ git checkout 4aaaf31a2daeffa42b1cd454e31f35008780319c -b $branch-working
 mkdir -p config/src
 git clone ${CONFIG_REPO:-https://github.com/stackhpc/kayobe-config-aio} -b ${CONFIG_BRANCH:-stable/train} config/src/kayobe-config
 
-# Update packages
-sudo dnf update -y
-
 # Bootstrap and exit if there is error
 set -e
 ./dev/install-dev.sh
