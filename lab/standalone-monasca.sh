@@ -8,7 +8,7 @@ set -ex
 pushd `dirname ${BASH_SOURCE[0]}`
 
 # Deploy overcloud
-export CONFIG_BRANCH=stable/ussuri-standalone-monasca
+export CONFIG_BRANCH=stable/train-standalone-monasca
 ./stack.sh
 
 popd

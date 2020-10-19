@@ -11,13 +11,13 @@ sudo sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
 sudo setenforce 0
 
 # From https://docs.openstack.org/kayobe/latest/development/automated.html#overcloud
-branch=stable/ussuri
+branch=stable/train
 git clone https://opendev.org/openstack/kayobe.git -b $branch
 cd kayobe
 # Checkout the following SHA which doesn't start network.service which causes network breakage
-#git checkout 4aaaf31a2daeffa42b1cd454e31f35008780319c -b $branch-working
+git checkout 4aaaf31a2daeffa42b1cd454e31f35008780319c -b $branch-working
 mkdir -p config/src
-git clone ${CONFIG_REPO:-https://github.com/stackhpc/kayobe-config-aio} -b ${CONFIG_BRANCH:-stable/ussuri} config/src/kayobe-config
+git clone ${CONFIG_REPO:-https://github.com/stackhpc/kayobe-config-aio} -b ${CONFIG_BRANCH:-stable/train} config/src/kayobe-config
 
 # Update packages
 sudo dnf update -y
