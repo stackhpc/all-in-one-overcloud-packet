@@ -19,6 +19,9 @@ cd kayobe
 mkdir -p config/src
 git clone ${CONFIG_REPO:-https://github.com/stackhpc/kayobe-config-aio} -b ${CONFIG_BRANCH:-stable/ussuri} config/src/kayobe-config
 
+# Update packages
+sudo dnf update -y
+
 # Bootstrap and exit if there is error
 set -e
 ./dev/install-dev.sh
